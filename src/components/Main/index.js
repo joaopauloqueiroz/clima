@@ -1,15 +1,18 @@
 import React, {Component} from 'react';
-import {StyleSheet} from 'react-native';
-import {Container, Text} from './styles';
+import {StyleSheet, View} from 'react-native';
+import {Text} from './styles';
+import {general} from '../../styles/';
 
 export default class index extends Component {
   render() {
     return (
-      <Container>
+      <View style={styles.container}>
         <Text> Content aplication </Text>
-      </Container>
+      </View>
     );
   }
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  ...general,
+});

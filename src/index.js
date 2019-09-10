@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {StyleSheet} from 'react';
 import Routes from './routes/';
-import { StatusBar } from 'react-native';
+import {StatusBar} from 'react-native';
 
 function src() {
   return (

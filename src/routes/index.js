@@ -8,7 +8,7 @@ export default class App extends React.Component {
     this.state = {
       signed: false,
       signLoaded: false,
-      control: true,
+      control: false,
     };
     // this.authemticate();
   }
@@ -17,6 +17,12 @@ export default class App extends React.Component {
   //       this.authemticate();
   //     }
   //   }
+
+  componentDidMount() {
+    this.setState({
+      control: true,
+    });
+  }
 
   // async authemticate() {
   //   let auth = await AsyncStorage.getItem('@ideas:_id');
@@ -36,6 +42,7 @@ export default class App extends React.Component {
   // }
 
   render() {
+    //em caso de implementação de authenticação podemos usar esse metodo
     const {signed, control} = this.state;
     const Layout = createRootNavigator(true);
     return control ? <Layout /> : <Loader />;

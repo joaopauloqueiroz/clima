@@ -18,7 +18,7 @@ export const createRootNavigator = logged => {
         Main: {screen: InitialRoutes},
       },
       {
-        initialRouteName: 'Main',
+        initialRouteName: logged ? 'Main' : '',
       },
     ),
   );
