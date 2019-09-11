@@ -4,11 +4,11 @@ import {Container, ImageView, Text} from './styles';
 import SunCloud from '../../assets/img/cloud.png';
 
 const item = ({data}) => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState({});
 
   useEffect(() => {
     setItems(data);
-  }, []);
+  });
 
   return (
     <Container>
@@ -18,9 +18,12 @@ const item = ({data}) => {
       <Text size={25}>{data.temp}</Text>
       <Text>{data.city_name}</Text>
       <Text>{data.description}</Text>
-      {data.forecast.map((item, i) => {
-        return <Text>{'ola'}</Text>;
-      })}
+      <Text>{JSON.stringify(items.forecast)}</Text>
+      <Text>
+        {items.forecast.Object.entries(el => (
+          <Text>aaaaa</Text>
+        ))}
+      </Text>
     </Container>
   );
 };
