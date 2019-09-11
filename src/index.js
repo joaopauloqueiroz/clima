@@ -1,4 +1,4 @@
-import React, {StyleSheet} from 'react';
+import React from 'react';
 import Routes from './routes/';
 import {StatusBar} from 'react-native';
 
