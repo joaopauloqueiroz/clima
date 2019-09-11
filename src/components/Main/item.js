@@ -20,7 +20,7 @@ const item = ({data}) => {
       <Text>{data.description}</Text>
       <Text>{JSON.stringify(items.forecast)}</Text>
       <Text>
-        {items.forecast.Object.entries(el => (
+        {items.forecast.Object.fromEntries(el => (
           <Text>aaaaa</Text>
         ))}
       </Text>
