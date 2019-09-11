@@ -3,28 +3,27 @@ import {StyleSheet, View} from 'react-native';
 import {Text} from './styles';
 import {general} from '../../styles/';
 import api from '../../services/api';
-
-export default function index(){
-  const [climate, setClimate] = useState({})
+import Item from './item';
+export default function index() {
+  const [climate, setClimate] = useState({});
   useEffect(() => {
     init();
   }, []);
 
   const init = async () => {
-    try{
-      const climateReceived = await api.get('455827');  
-      setClimate(climateReceived.data);
+    try {
+      const climateReceived = await api.get('455827');
+      setClimate(climateReceived.data.results);
+    } catch (error) {
+      alert(error);
     }
-    catch (error){
-      alert(error)
-    }
-  }
+  };
 
-  return(
+  return (
     <View style={styles.container}>
-      <Text>{JSON.stringify(climate)}</Text>
+      <Item data={climate} />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({

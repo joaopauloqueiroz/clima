@@ -3,7 +3,7 @@
 const colors = {
   header: '#333333',
   primary: '#069',
-  background: '#fff',
+  background: '#015379',
 };
 
 export default colors;

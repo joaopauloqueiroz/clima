@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://api.hgbrasil.com/weather?woeid='
+  baseURL: 'https://api.hgbrasil.com/weather?weather=',
 });
 
 export default api;
