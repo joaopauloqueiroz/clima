@@ -3,13 +3,13 @@ import {View, Image} from 'react-native';
 import {Container, ImageView, Text} from './styles';
 import SunCloud from '../../assets/img/cloud.png';
 
-const item = ({data}) => {
+const item = ({data, forecast}) => {
   const [items, setItems] = useState({});
 
   useEffect(() => {
     setItems(data);
-  });
-
+  }, []);
+  
   return (
     <Container>
       <ImageView>
@@ -18,12 +18,15 @@ const item = ({data}) => {
       <Text size={25}>{data.temp}</Text>
       <Text>{data.city_name}</Text>
       <Text>{data.description}</Text>
-      <Text>{JSON.stringify(items.forecast)}</Text>
-      <Text>
-        {items.forecast.Object.entries(el => (
-          <Text>aaaaa</Text>
-        ))}
-      </Text>
+      <Text>{}</Text>
+      {forecast.map(el => (
+        <>
+         <Text>{el.date}</Text>
+         <Text>{el.max}</Text>
+         <Text>{el.min}</Text>
+         <Text>{el.description}</Text>
+        </>
+      ))}
     </Container>
   );
 };
