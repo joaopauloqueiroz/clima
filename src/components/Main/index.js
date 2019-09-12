@@ -7,9 +7,10 @@ import Item from './item';
 export default function index() {
   const [climate, setClimate] = useState({});
   useEffect(() => {
+    init();
     setInterval(() => {
       init();
-    }, 2000);
+    }, 10000);
   }, []);
 
   const init = async () => {
@@ -17,7 +18,7 @@ export default function index() {
       const climateReceived = await api.get('455827');
       setClimate(climateReceived.data.results);
     } catch (error) {
-      alert(error);
+      // alert(error);
     }
   };
 
