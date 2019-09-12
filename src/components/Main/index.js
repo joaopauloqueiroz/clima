@@ -1,6 +1,6 @@
 import React, {Component, useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Text} from './styles';
+import {Text, Container} from './styles';
 import {general} from '../../styles/';
 import api from '../../services/api';
 import Item from './item';
@@ -60,6 +60,7 @@ export default function index() {
         alignItems: 'center',
         alignSelf: 'stretch',
       }}>
+      <Container>
       <SearchableDropdown 
           selectedItems={[city]}
           onItemSelect={(item) => {
@@ -88,14 +89,18 @@ export default function index() {
             padding: 5,
             margin: 0,
             borderWidth: 1,
+            opacity: 0.8,
+            /*color: '#ddd',*/
             borderColor: '#ccc',
             backgroundColor: '#FAF7F6',
+            borderRadius: 4,
           }}
           itemTextStyle={{ color: '#222', width: '100%', }}
           itemsContainerStyle={{ maxHeight: 180, width: '100%', }}
           items={cities}
         />
       {climate.forecast && <Item data={climate} forecast={climate.forecast} />}
+      </Container>
     </View>
   );
 }
