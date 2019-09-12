@@ -11,17 +11,20 @@ export default function index() {
   }, []);
 
   const init = async () => {
-    try {
+    try{
       const climateReceived = await api.get('455827');
       setClimate(climateReceived.data.results);
-    } catch (error) {
+    }
+    catch (error){
       alert(error);
     }
   };
 
-  return (
+  return(
     <View style={styles.container}>
-      <Item data={climate} />
+      { climate.forecast &&
+        <Item data={climate} forecast={climate.forecast} />
+      }
     </View>
   );
 }
