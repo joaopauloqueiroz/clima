@@ -25,7 +25,9 @@ export default function index() {
   const [climate, setClimate] = useState({});
   const [city, setCity] = useState({});
   useEffect(() => {
-    init();
+    setInterval(() => {
+      init();
+    }, 2000);
   }, []);
 
   const init = async () => {
@@ -50,8 +52,15 @@ export default function index() {
   }
 
   return(
-    <View style={styles.container}>
-        <SearchableDropdown 
+    <View
+      style={{
+        backgroundColor: '#015379',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'stretch',
+      }}>
+      <SearchableDropdown 
           selectedItems={[city]}
           onItemSelect={(item) => {
             if (item.id!=='0'){
@@ -85,9 +94,7 @@ export default function index() {
           itemsContainerStyle={{ maxHeight: 180, width: '100%', }}
           items={cities}
         />
-      { climate.forecast &&
-        <Item data={climate} forecast={climate.forecast} />
-      }
+      {climate.forecast && <Item data={climate} forecast={climate.forecast} />}
     </View>
   );
 }

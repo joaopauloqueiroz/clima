@@ -34,12 +34,15 @@ const item = ({data, forecast}) => {
       </Card>
       <Carousel
         layout={'default'}
-        layoutCardOffset={`9`}
         ref={c => {
           this._carousel = c;
         }}
         data={forecast}
-        containerCustomStyle={{flex: 1}}
+        containerCustomStyle={{
+          flex: 1,
+          width: '100%',
+          maxHeight: 250,
+        }}
         renderItem={_renderItems}
         sliderWidth={300}
         itemWidth={300}
