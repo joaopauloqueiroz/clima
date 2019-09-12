@@ -23,17 +23,17 @@ const cities = [
 
 export default function index() {
   const [climate, setClimate] = useState({});
-  const [city, setCity] = useState({});
+  const [city, setCity] = useState({id: '455827', name: 'São Paulo'});
   useEffect(() => {
+    init(city.id);
     setInterval(() => {
-      init();
-    }, 2000);
+      init(city.id);
+    }, 600000);
   }, []);
 
-  const init = async () => {
+  const init = async (id) => {
     try{
-      setCity({id: '455827', name: 'São Paulo'});
-      const climateReceived = await api.get('455827');
+      const climateReceived = await api.get(`weather?woeid=${id}&key=bd1a5133`);
       setClimate(climateReceived.data.results);
     }
     catch (error){
@@ -43,8 +43,7 @@ export default function index() {
 
   const findCity = async (item) => {
     try{
-      const climateReceived = await api.get(item.id);
-      setClimate(climateReceived.data.results);
+      init(item.id);
     }
     catch (error){
       alert(error);
@@ -55,6 +54,7 @@ export default function index() {
     <View
       style={{
         backgroundColor: '#015379',
+        width: '100%',
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
@@ -70,11 +70,11 @@ export default function index() {
           }}
           defaultIndex={1}
           itemStyle={{
-            width: '96%',
-            height: 40,
+            width: 300,
+            height: 30,
             justifyContent: 'center',
             alignItems: 'center',
-            marginLeft: '2%',
+            margin: 2,
             backgroundColor: '#ddd',
             borderColor: '#bbb',
             borderWidth: 1,
@@ -82,10 +82,11 @@ export default function index() {
           }}
           textInputStyle={{
             //inserted text style
-            width: '96%',
+            width: 300,
             justifyContent: 'center',
+            alignSelf: 'stretch',
             padding: 5,
-            margin: '2%',
+            margin: 0,
             borderWidth: 1,
             borderColor: '#ccc',
             backgroundColor: '#FAF7F6',

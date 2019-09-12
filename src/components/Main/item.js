@@ -29,7 +29,7 @@ const item = ({data, forecast}) => {
       <Clima>Clima Tempo</Clima>
       <Card>
         <Text size={25}>{data.temp + '°'}</Text>
-        <Text>{data.city_name}</Text>
+        <Text>{data.city}</Text>
         <Text>{data.description}</Text>
       </Card>
       <Carousel
