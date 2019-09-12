@@ -7,24 +7,30 @@ import Item from './item';
 export default function index() {
   const [climate, setClimate] = useState({});
   useEffect(() => {
-    init();
+    setInterval(() => {
+      init();
+    }, 2000);
   }, []);
 
   const init = async () => {
-    try{
+    try {
       const climateReceived = await api.get('455827');
       setClimate(climateReceived.data.results);
-    }
-    catch (error){
+    } catch (error) {
       alert(error);
     }
   };
 
-  return(
-    <View style={styles.container}>
-      { climate.forecast &&
-        <Item data={climate} forecast={climate.forecast} />
-      }
+  return (
+    <View
+      style={{
+        backgroundColor: '#015379',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'stretch',
+      }}>
+      {climate.forecast && <Item data={climate} forecast={climate.forecast} />}
     </View>
   );
 }
