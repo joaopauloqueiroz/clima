@@ -34,6 +34,7 @@ export default function index() {
   }, []);
 
   const init = async id => {
+    setLoader(true);
     try {
       const climateReceived = await api.get(`weather?woeid=${id}&key=bd1a5133`);
       setClimate(climateReceived.data.results);
@@ -42,8 +43,8 @@ export default function index() {
   };
 
   const findCity = async item => {
-    setLoader(true);
     try {
+      setCity(item);
       init(item.id);
     } catch (error) {}
   };
@@ -58,53 +59,53 @@ export default function index() {
         alignItems: 'center',
         alignSelf: 'stretch',
       }}>
-      {loader ? (
-        <Preloader />
-      ) : (
-        <Container>
-          <SearchableDropdown
-            selectedItems={[city]}
-            onItemSelect={item => {
-              if (item.id !== '0') {
-                setCity(item);
-                findCity(item);
-              }
-            }}
-            defaultIndex={1}
-            itemStyle={{
-              width: 300,
-              height: 30,
-              justifyContent: 'center',
-              alignItems: 'center',
-              margin: 2,
-              backgroundColor: '#ddd',
-              borderColor: '#bbb',
-              borderWidth: 1,
-              borderRadius: 5,
-            }}
-            textInputStyle={{
-              //inserted text style
-              width: 300,
-              justifyContent: 'center',
-              alignSelf: 'stretch',
-              padding: 5,
-              margin: 0,
-              borderWidth: 1,
-              opacity: 0.8,
-              /*color: '#ddd',*/
-              borderColor: '#ccc',
-              backgroundColor: '#FAF7F6',
-              borderRadius: 4,
-            }}
-            itemTextStyle={{color: '#222', width: '100%'}}
-            itemsContainerStyle={{maxHeight: 180, width: '100%'}}
-            items={cities}
-          />
-          {climate.forecast && (
+      <Container>
+        <SearchableDropdown
+          selectedItems={[city]}
+          onItemSelect={item => {
+            if (item.id !== '0') {
+              setCity(item);
+              findCity(item);
+            }
+          }}
+          defaultIndex={1}
+          itemStyle={{
+            width: 300,
+            height: 30,
+            justifyContent: 'center',
+            alignItems: 'center',
+            margin: 2,
+            backgroundColor: '#ddd',
+            borderColor: '#bbb',
+            borderWidth: 1,
+            borderRadius: 5,
+          }}
+          textInputStyle={{
+            //inserted text style
+            width: 300,
+            justifyContent: 'center',
+            alignSelf: 'stretch',
+            padding: 5,
+            margin: 0,
+            borderWidth: 1,
+            opacity: 0.8,
+            /*color: '#ddd',*/
+            borderColor: '#ccc',
+            backgroundColor: '#FAF7F6',
+            borderRadius: 4,
+          }}
+          itemTextStyle={{color: '#222', width: '100%'}}
+          itemsContainerStyle={{maxHeight: 180, width: '100%'}}
+          items={cities}
+        />
+        {loader ? (
+          <Preloader />
+        ) : (
+          climate.forecast && (
             <Item data={climate} forecast={climate.forecast} />
-          )}
-        </Container>
-      )}
+          )
+        )}
+      </Container>
     </View>
   );
 }
